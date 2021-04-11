@@ -9,9 +9,9 @@
 #define SA struct sockaddr
 void chat(int sockfd)
 {
-    char buff[100];
+    char buff[80];
     int n;
-    while(strcmp("exit",buff)!=0)
+    while(1)
     {
         strcpy(buff,"\n");
         read(sockfd,buff,sizeof(buff));
@@ -19,6 +19,8 @@ void chat(int sockfd)
         strcpy(buff,"\n");
         printf("Server: ");
         scanf("%[^\n]%*c", buff);
+        if(strcmp(buff,"exit")==0)
+            exit(0);
         write(sockfd,buff,sizeof(buff));
     }
     printf("EXIT command detected\n");
@@ -33,7 +35,7 @@ int main()
         printf("Socket could not be created\n");
         exit(0);
     }
-    printf("Socket was created successfully\n");
+    printf("Socket created successfully\n");
     servaddr.sin_family=AF_INET;
     servaddr.sin_addr.s_addr=htonl(INADDR_ANY);
     servaddr.sin_port=htons(PORT);
@@ -48,7 +50,7 @@ int main()
         printf("Listen failed\n");
         exit(0);
     }
-    printf("Server is listening\n");
+    printf("Server is listening\n\n\n");
     len=sizeof(cli);
     connfd=accept(sockfd, (SA*)&cli,&len);
     if(connfd==-1)
