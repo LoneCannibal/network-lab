@@ -20,7 +20,6 @@ void chat(sockfd)
         strcpy(buff,"\n");
         read(sockfd,buff,sizeof(buff));
         printf("Server: %s\n",buff);
-        
     }
     printf("EXIT command detected\n");
 }

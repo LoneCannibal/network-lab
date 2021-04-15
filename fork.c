@@ -44,10 +44,8 @@ int main()
                     f=fork();
                     if(f==0)
                          printf("Child process C3 created with process id %d and parent id %d\n",getpid(),getppid());
-
                 }
             }
     }
-        
-    return 0;
+     return 0;
 }
