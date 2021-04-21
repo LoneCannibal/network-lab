@@ -15,15 +15,18 @@ void chat(int sockfd)
     {
         strcpy(buff,"\n");
         read(sockfd,buff,sizeof(buff));
-        printf("Client: %s\n",buff);
+        printf("Client: %s [MSG LENGTH:%d]\n",buff,strlen(buff));
         strcpy(buff,"\n");
         printf("Server: ");
         scanf("%[^\n]%*c", buff);
         if(strcmp(buff,"exit")==0)
+        {
+            printf("EXIT command detected\n");
             exit(0);
+        }
         write(sockfd,buff,sizeof(buff));
     }
-    printf("EXIT command detected\n");
+    
 }
 int main()
 {
