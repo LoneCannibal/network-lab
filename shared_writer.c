@@ -7,6 +7,6 @@ void main(){
     int shmid=shmget(key,1024,0666|IPC_CREAT);
     char *str=(char*)shmat(shmid,(void*)0,0);
     printf("Enter data to write: ");
-    fgets(str,sizeof(str),stdin);
+    gets(str);
     shmdt(str);
 }
