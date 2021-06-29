@@ -13,7 +13,7 @@ void chat(int sockfd)
     int n;
     while(1)
     {
-        strcpy(buff,"\n");
+        strcpy(buff,"\n ");
         read(sockfd,buff,sizeof(buff));
         printf("Client: %s [MSG LENGTH:%d]\n",buff,strlen(buff));
         strcpy(buff,"\n");
