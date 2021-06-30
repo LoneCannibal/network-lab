@@ -2,7 +2,7 @@
 #include<pthread.h>
 int limit;
 void *fib(void *var){
-    int a=0,b=1,c=0,n=0;
+    int a=0,b=1,c=1,n=0;
     while(n!=limit){
         printf("%d\n",a);
         a=b;
@@ -19,13 +19,13 @@ void *prime(void *var){
         }
     }
     if(factors==2)
-        printf("%d id prime\n",limit);
+        printf("%d IS PRIME\n",limit);
     else
-        printf("%d is not prime\n",limit);
+        printf("%d IS NOT PRIME\n",limit);
 }
 void main(){
     pthread_t thread1, thread2;
-    printf("Enter the limit");
+    printf("Enter the limit: ");
     scanf("%d",&limit);
     pthread_create(&thread1, NULL, fib, NULL);
     pthread_create(&thread2, NULL, prime, NULL);
