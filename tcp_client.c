@@ -28,7 +28,7 @@ void chat(sockfd)
 int main()
 {
     int sockfd,connfd;
-    struct sockaddr_in servaddr, cli;
+    struct sockaddr_in clientaddr, serv;
     sockfd=socket(AF_INET, SOCK_STREAM, 0);
     if(sockfd==-1)
     {
@@ -36,10 +36,10 @@ int main()
         exit(0);
     }
     printf("Socket created successfully\n");
-    servaddr.sin_family=AF_INET;
-    servaddr.sin_addr.s_addr=inet_addr("127.0.0.1");
-    servaddr.sin_port=htons(PORT);
-    if(connect(sockfd,(SA*)&servaddr,sizeof(servaddr))==-1)
+    clientaddr.sin_family=AF_INET;
+    clientaddr.sin_addr.s_addr=inet_addr("127.0.0.1");
+    clientaddr.sin_port=htons(PORT);
+    if(connect(sockfd,(SA*)&clientaddr,sizeof(clientaddr))==-1)
     {
         printf("Connection with server was unsuccessful. Server could be offline\n");
         exit(0);
