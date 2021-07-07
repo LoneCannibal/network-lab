@@ -14,8 +14,10 @@ void chat(int sockfd){
         scanf("%[^\n]%*c", buffer);
         sendto(sockfd, buffer, strlen(buffer), 0, (struct sockaddr *) &clientaddr,sizeof(clientaddr));
         strcpy(buffer,"");
-        recvfrom(sockfd, buffer, sizeof(buffer), MSG_WAITALL, ( struct sockaddr *)NULL,NULL);
+        int n=recvfrom(sockfd, buffer, sizeof(buffer), MSG_WAITALL, ( struct sockaddr *)NULL,NULL);
+        buffer[n]='\0';
         printf("Server: %s [MSG LENGTH: %d]\n",buffer,strlen(buffer));
+        strcpy(buffer,"");
     }
 }
 int main() {
@@ -25,7 +27,7 @@ int main() {
         printf("Socket creation failed\n");
         exit(1);
     }
-    printf("Socket created successfully");
+    printf("Socket created successfully\n");
     clientaddr.sin_family=AF_INET;
     clientaddr.sin_addr.s_addr=inet_addr("127.0.0.1");
     clientaddr.sin_port=htons(PORT);

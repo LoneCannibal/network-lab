@@ -14,7 +14,6 @@ void chat(int sockfd){
         int n=recvfrom(sockfd, (char *)buffer, sizeof(buffer), MSG_WAITALL, ( struct sockaddr *)&cliaddr,&len);
         buffer[n]='\0';
         printf("Client: %s [MSG LENGTH: %d]\n",buffer,strlen(buffer));
-
         printf("Server: ");
         scanf("%[^\n]%*c", buffer);
         sendto(sockfd, buffer, strlen(buffer), 0, (struct sockaddr *) &cliaddr,sizeof(cliaddr));
@@ -22,7 +21,6 @@ void chat(int sockfd){
     }
 }
 int main(){
-    
     int sockfd=socket(AF_INET,SOCK_DGRAM,0);   
     if(sockfd==-1){
         printf("Socket creation failed\n");
