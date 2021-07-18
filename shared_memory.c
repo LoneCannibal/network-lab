@@ -9,7 +9,7 @@ void main(){
     int *shmptr=shmat(shmid,NULL,0);
     int num;
     int f=fork();
-    if(f==1){
+    if(f==-1){
         printf("Fork creation failed\n");
         exit(1);
     }
@@ -20,7 +20,7 @@ void main(){
         printf("The square of %d is %d\n",*shmptr,square);
         
     }
-    else{//Child process
+    else if(f==0){//Child process
         printf("Enter a number: ");
         scanf("%d",&num);
         *shmptr=num;
