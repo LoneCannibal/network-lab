@@ -19,7 +19,7 @@ void main(){
     while(1){
         msgrcv(msg_id,&message,sizeof(message),1,0);
         printf("Program 1:  %s",message.msg_text);
-        strcmp(message.msg_text,"");
+        strcpy(message.msg_text,"");
         printf("Program 2:  ");
         fgets(message.msg_text,sizeof(message.msg_text),stdin);
         message.msg_type=1;
